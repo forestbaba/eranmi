@@ -7,13 +7,8 @@ let appSecret = "secret";
 
 const UserSchema = new Schema({
 
-    // first_name: {
-    //     type: String,
-    //     required: true
-    // },
     name: {
         type: String,
-       // required: true
     },
     apikey: {
         type: String
@@ -23,23 +18,14 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        //required: true,
-        // trim: true,
-        // minlength:1,
-        // unique: true,
-        // validate:{
-        //     validator: validator.isEmail,
-        //     message: `${Value} is not a valid email`
-        // }
+       
     },
     tokens: [{
         access: {
             type: String,
-           // required: true
         },
         token: {
             type: String,
-          //  required: true
         }
     }],
     isEmailVerified: {
@@ -48,7 +34,6 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        //required: true
     },
     location: {
         type: String
@@ -64,22 +49,8 @@ const UserSchema = new Schema({
             type: Number,
             default: 0
         },
-    followers: [{
-       
-        people: [{
-            type: Schema.Types.ObjectId,
-            ref: 'user'
-        }],
-    }],
-    followingCounter: { type: Number, default: 0 },
-
-    following: [{
-        people: [{
-            type: Schema.Types.ObjectId,
-            ref: 'user'
-        }],
-    }],
-    
+   
+   
     mobile_no: {
         type: String
     },
@@ -119,12 +90,6 @@ const UserSchema = new Schema({
     },
     isActive: { type: Boolean, default: true },
 
-    isBlocked: [{
-        status: { type: Boolean, default: false },
-        by: { type: mongoose.Schema.Types.ObjectId, ref: 'user' }
-    }],
-
-    likedPost: [{type: mongoose.Schema.Types.ObjectId, ref: 'post'  }],
 
     isAdmin: {
         type: Boolean, default: false
@@ -134,25 +99,6 @@ const UserSchema = new Schema({
     date_created: {
         type: Date,
         default: Date.now
-    },
-    no_of_transaction: {
-        type: Number,
-        default: 0
-    },
-    tokens: [{
-
-        access: {
-            type: String,
-           // required: true
-        },
-        token: {
-            type: String,
-          //  required: true
-        },
-    }],
-    deactivate: {
-        type: Boolean,
-        default: false
     }
 
 

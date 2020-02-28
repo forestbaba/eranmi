@@ -23,7 +23,7 @@ mongoose.connect(db).then(() => console.log('Database is ready')).catch(
 require('./server/helper/passport')(passport)
 
 app.get('/', (req, res) => {
-    res.status(200).json({ error: false, message: 'Greetings from oddwise' })
+    res.status(200).json({ error: false, message: 'Greetings from Sendus' })
 });
 
 

@@ -64,17 +64,6 @@ router.post("/signup", (req, res) => {
                                         let userInstance = new User(newUser);
 
                                         userInstance.save().then(() => {
-                                            //  return  jwt.sign(userInstance, keys.secretOrKey, { expiresIn: 86400 }, (err, token) => {
-                                            //         res.json({
-                                            //             success: true,
-                                            //             token: 'Bearer ' + token,
-                                            //             user: payload
-                                            //         })
-
-                                            //     });
-
-                                            // return userInstance.generateAuthToken()
-                                            // res.json({ reguser })
                                             res.status(200).json({ error: false, message: 'User registered successfully' })
 
                                         })
@@ -160,14 +149,10 @@ router.post("/login", (req, res) => {
     console.log('inside login')
 
     const errors = {}
-    // const { errors, isValid } = validateLogin(req.body);
+ 
 
-    // if (!isValid) {
-    //     return res.status(400).json(errors);
-    // }
-
-    if (req.body.emailorusername === null || req.body.emailorusername === '' || req.body.emailorusername === undefined) {
-        return res.status(400).json({ error: true, message: 'emailorusername is required'})
+    if (req.body.email === null || req.body.email === '' || req.body.email === undefined) {
+        return res.status(400).json({ error: true, message: 'email is required'})
     }
     if (req.body.password === null || req.body.password === '' || req.body.password === undefined) {
         return res.status(400).json({ error: true, message: 'password is required'})
@@ -178,18 +163,15 @@ router.post("/login", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    User.findOne({ email: req.body.emailorusername })
+    User.findOne({ email: req.body.email })
     .then(user => {
 
            
 
             if (user) {
-                //  console.log('user:  ', user)
                 if (user.isActive === true) {
                     bcrypt.compare(password, user.password)
                         .then(isMatch => {
-                            // console.log('Email founc')
-
                             if (isMatch) {
                                 User.findOneAndUpdate({ lastlogin: Date.now() })
                                 User.findOne({
@@ -217,18 +199,7 @@ router.post("/login", (req, res) => {
 
 
 
-                                        // const payload = {
-                                        //     id: user.id,
-                                        //     email: user.email, 
-                                        //     mobile_no: user.mobile_no,
-                                        //     first_name: user.first_name,
-                                        //     family_name: user.family_name,
-                                        //     lastlogin: user.lastlogin,
-                                        //     profile_pix: user.profile_pix,
-                                        //     apikey: user.apikey
-                                        // }
-                                        // res.status(200).json({ error: false, user: payload })
-                                    }
+                                       }
                                 })
 
                             } else {
@@ -245,67 +216,7 @@ router.post("/login", (req, res) => {
             } else {
                 return res.status(400).json({error: true, message:'User not found'})
             }
-            //else {
-            //     User.findOne({ username: req.body.emailorusername })
-            //         .then(user => {
-
-            //             if (user) {
-            //                 if (user.isActive === true) {
-            //                     bcrypt
-            //                         .compare(password, user.password)
-            //                         .then(isMatch => {
-            //                             if (isMatch) {
-            //                                 User.findOneAndUpdate({ lastlogin: Date.now() })
-            //                                 User.findOne({
-            //                                     _id: user.id
-            //                                 }).then(user => {
-            //                                     if (user) {
-            //                                         const payload = {
-            //                                             _id: user._id,
-            //                                             name: user.name,
-            //                                             email: user.email,
-            //                                             mobile_no: user.mobile_no,
-            //                                             username: user.username,
-            //                                             following: user.following,
-            //                                             followers: user.followers
-
-            //                                         }
-
-            //                                         jwt.sign(payload, keys.secretOrKey, { expiresIn: 86400 }, (err, token) => {
-            //                                             res.json({
-            //                                                 success: true,
-            //                                                 token: 'Bearer ' + token,
-            //                                                 user: payload
-            //                                             })
-
-            //                                         });
-
-
-            //                                     }
-            //                                 })
-                                            
-
-                                           
-            //                             } else {
-            //                                 errors.password = "Email or Password is incorrect";
-            //                                 return res.status(400).json(errors);
-            //                             }
-            //                         })
-            //                         .catch(err => console.log(err));
-            //                     // console.log("here 2");
-            //                 } else {
-            //                     errors.user = "You account is currently not active, contact support for additional information";
-            //                 }
-
-            //             } else {
-            //                 res.status(400).json({ error: true, message: 'Either email,username or password is incorrect' })
-            //                 // return res.status(400).json(errors)
-            //             }
-            //         })
-
-            // }
-            // }
-
+            
         })
         .catch(err => res.status(400).json(err))
 });

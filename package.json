@@ -1,0 +1,30 @@
+{
+  "name": "eranmi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "expres": "0.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.2",
+    "morgan": "^1.9.1",
+    "nodemailer": "^6.4.3",
+    "nodemailer-express-handlebars": "^3.1.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5",
+    "validate-phone-number-node-js": "0.0.1",
+    "validator": "^12.2.0"
+  }
+}

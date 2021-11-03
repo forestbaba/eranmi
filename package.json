@@ -28,6 +28,6 @@
     "passport-local": "^1.0.0",
     "randomstring": "^1.1.5",
     "validate-phone-number-node-js": "0.0.1",
-    "validator": "^12.2.0"
+    "validator": "^13.7.0"
   }
 }
